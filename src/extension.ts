@@ -5,6 +5,8 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 
+const TS_EXTENSION_REGEX = /\.ts$/
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -18,9 +20,12 @@ export function activate(context: vscode.ExtensionContext) {
     // The commandId parameter must match the command field in package.json
     let disposable = vscode.commands.registerCommand('extension.exportIndex', () => {
         const currentFileDir = path.dirname(vscode.window.activeTextEditor.document.uri.fsPath);
-        const files = fs.readdirSync(currentFileDir).filter(file => !/^index[.]\w+$/i.test(file));
+        const files = fs.readdirSync(currentFileDir)
+            .filter(file => !/^index[.]\w+$/i.test(file))
 
-        const text = files.sort().map(file => `export ${file.replace(/[.].+$/, '').replace(/-./g, m => m[1].toUpperCase())} from './${file}';`).join('\n');
+        const text = files
+            .sort()
+            .map(file => `export * from './${file.replace(TS_EXTENSION_REGEX,'')}';`).join('\n');
 
         vscode.window.activeTextEditor.edit((b) => b.insert(new vscode.Position(0, 0), text));
     });
