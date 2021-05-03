@@ -2,7 +2,7 @@
   "name": "export-all-typescript",
   "displayName": "export all typescript",
   "description": "Export all files from folder in an index file",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "publisher": "fega",
   "engines": {
     "vscode": "^1.5.0"
