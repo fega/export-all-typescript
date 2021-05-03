@@ -11,14 +11,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.exportIndex"
+    "onCommand:extension.exportAllTypescript"
   ],
   "main": "./out/src/extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.exportIndex",
-        "title": "exportIndex: Export all files in current folder"
+        "command": "extension.exportAllTypescript",
+        "title": "exportAllTypescript: Export all files in current folder"
       }
     ]
   },
@@ -31,13 +31,14 @@
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.14.13",
     "mocha": "^2.3.3",
-    "typescript": "^2.0.3",
     "vscode": "^1.0.0"
   },
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "typescript": "^4.2.4"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fega/export-all-typescript.git"
